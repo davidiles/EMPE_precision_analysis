@@ -1,0 +1,34 @@
+---
+title: 'Precision analysis for global monitoring of Emperor Penguin populations'
+author: "David Iles"
+date: "Generated on `r Sys.Date()`"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png",
+  dev.args = list(type = "cairo-png"),
+  fig.width = 6,
+  fig.height = 4,
+  eval = TRUE,
+  echo = TRUE,
+  warning = FALSE,
+  error = FALSE,
+  message = FALSE,
+  knitr::opts_knit$set(root.dir = 'C:/Users/IlesD/OneDrive - EC-EC/Iles/Projects/X_other_projects/EMPE_precision_analysis')
+)
+```
+
+# Overview
+
+This document outlines a proposed approach for evaluating the anticipated precision of population status and trend assessments for Emperor Penguins.
+
+## Citations
+
+R Core Team (2021). R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria.
