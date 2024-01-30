@@ -2,7 +2,8 @@
 
 This document outlines a proposed approach for evaluating the
 anticipated precision of population status and trend assessments for
-Emperor Penguins.
+Emperor Penguins. This analysis accompanies the original analysis
+described in [LaRue et al.](https://github.com/davidiles/EMPE_Global).
 
 ## Citations
 
