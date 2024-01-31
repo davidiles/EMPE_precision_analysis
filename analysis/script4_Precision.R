@@ -99,7 +99,7 @@ if (!file.exists("./output/simulation/precision_results.RData")){
 for (sim_run in seq(1,1000,1)){
   
   # Scenarios that include additional sampling
-  for (n_additional_years in seq(0,30,5)){
+  for (n_additional_years in seq(0,40,5)){
     
     n_years_total <- jags.data$n_years + n_additional_years
     
@@ -126,11 +126,9 @@ for (sim_run in seq(1,1000,1)){
     
     # Non-joint samples, to represent a wider range of population dynamic scenarios
     jags.data.sim$prob_occ <- out$sims.list$prob_occ[sample(1:out$mcmc.info$n.samples,1)]
-    jags.data.sim$r_mean_grandmean_mu <- out$sims.list$r_mean_grandmean_mu[sample(1:out$mcmc.info$n.samples,1)]
-    jags.data.sim$r_mean_grandmean_sigma <- out$sims.list$r_mean_grandmean_sigma[sample(1:out$mcmc.info$n.samples,1)]
     jags.data.sim$logX1_mean <- out$sims.list$logX1_mean[sample(1:out$mcmc.info$n.samples,1)]
     jags.data.sim$logX1_sigma <- out$sims.list$logX1_sigma[sample(1:out$mcmc.info$n.samples,1)]
-    jags.data.sim$r_sigma <- out$sims.list$r_sigma[sample(1:out$mcmc.info$n.samples,1)]
+    
     jags.data.sim$aerial_sigma <- out$sims.list$aerial_sigma[sample(1:out$mcmc.info$n.samples,1)]
     jags.data.sim$sat_slope <- out$sims.list$sat_slope[sample(1:out$mcmc.info$n.samples,1),1:3]
     jags.data.sim$sat_CV <- out$sims.list$sat_CV[sample(1:out$mcmc.info$n.samples,1),1:3]
@@ -140,25 +138,21 @@ for (sim_run in seq(1,1000,1)){
     # Simulate dynamics at each colony
     # --------------------------------------
     
-    # Hypothetical carrying capacities (between 1000 and 100000)
-    K <- runif(jags.data$n_sites,1000,50000)
+    # Assume a worst-case scenario where all colonies are declining rapidly enough to reach 50% of initial population size in 3 generations
+    r_mean = log(0.5)/(16*3) 
+    r_sigma <- out$sims.list$r_sigma[sample(1:out$mcmc.info$n.samples,1)]
     
     # Initial abundances
     logN_matrix <- matrix(NA,nrow = jags.data$n_sites, ncol = 100)
-    logN_matrix[,1] <- log(runif(jags.data$n_sites,0,K))
+    logN_matrix[,1] <- rnorm(jags.data$n_sites, jags.data.sim$logX1_mean ,jags.data.sim$logX1_sigma)
     
     # Simulate dynamics.  Assume annual population growth is negative if N[t-1] is larger than K
     for (s in 1:jags.data$n_sites){
       
-      # Mean growth rate at site
-      r_mean <- rnorm(1,jags.data.sim$r_mean_grandmean_mu,jags.data.sim$r_mean_grandmean_sigma) 
-      
       for (t in 2:ncol(logN_matrix)){
         
-        # Annual growth rate this year
-        r <- rnorm(1,r_mean,jags.data.sim$r_sigma)
-        if (logN_matrix[s,t-1]>log(K[s]) & r>0) r = -r # If N[t-1] > K, make growth rate negative
-        logN_matrix[s,t] <- logN_matrix[s,t-1] + r
+        logN_matrix[s,t] <- logN_matrix[s,1] + rnorm(1,r_mean*(t-1),r_sigma)
+        
       }
       
     }
@@ -485,6 +479,9 @@ for (sim_run in seq(1,1000,1)){
     
     precision_summary <- data.frame(seed = sim_run,
                                     n_additional_years = n_additional_years,
+                                    
+                                    r = r_mean, # true slope
+                                    
                                     Rhat_hyper = mean(Rhat_hyper > 1.1, na.rm = TRUE),      # Proportion of non-converged hyper parameters
                                     Rhat_indices = mean(Rhat_indices > 1.1, na.rm = TRUE),  # Proportion of non-converged hyper parameters
                                     Bayesian_pval_adult = Bayesian_pval_adult,
@@ -494,6 +491,7 @@ for (sim_run in seq(1,1000,1)){
                                     global_trend_est_q500 = quantile(out_refit$sims.list$global_trend,0.500),
                                     global_trend_est_q975 = quantile(out_refit$sims.list$global_trend,0.975),
                                     global_trend_true = out_sim$sims.list$global_trend,
+                                    prob_slope_less_than_zero = mean(out_refit$sims.list$global_trend<r_mean),
                                     
                                     percent_change_est_q025 = quantile(percent_change_est,0.025),
                                     percent_change_est_q500 = quantile(percent_change_est,0.500),
