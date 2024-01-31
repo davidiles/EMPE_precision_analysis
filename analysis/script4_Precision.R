@@ -477,7 +477,8 @@ for (sim_run in seq(1,1000,1)){
     # Save results for this simulation
     # -----------------------------------------
     
-    precision_summary <- data.frame(seed = sim_run,
+    precision_summary <- data.frame(sim_run = sim_run,
+                                    simulation_label = paste0("Sim # ",sim_run),
                                     n_additional_years = n_additional_years,
                                     
                                     r = r_mean, # true slope
@@ -487,11 +488,13 @@ for (sim_run in seq(1,1000,1)){
                                     Bayesian_pval_adult = Bayesian_pval_adult,
                                     Bayesian_pval_satellite = Bayesian_pval_satellite,
                                     
+                                    # The actual long-term slope of the population
+                                    global_trend_true = out_sim$sims.list$global_trend,
                                     global_trend_est_q025 = quantile(out_refit$sims.list$global_trend,0.025),
                                     global_trend_est_q500 = quantile(out_refit$sims.list$global_trend,0.500),
                                     global_trend_est_q975 = quantile(out_refit$sims.list$global_trend,0.975),
-                                    global_trend_true = out_sim$sims.list$global_trend,
-                                    prob_slope_less_than_zero = mean(out_refit$sims.list$global_trend<r_mean),
+                                    
+                                    prob_slope_less_than_zero = mean(out_refit$sims.list$global_trend<0),
                                     
                                     percent_change_est_q025 = quantile(percent_change_est,0.025),
                                     percent_change_est_q500 = quantile(percent_change_est,0.500),
@@ -506,6 +509,33 @@ for (sim_run in seq(1,1000,1)){
     load(file = "./output/simulation/precision_results.RData")
     precision_results = rbind(precision_results, precision_summary)
     save(precision_results,file = "./output/simulation/precision_results.RData")
+    
+    tmp_plot <- ggplot(data = precision_results, aes(x = n_additional_years, y = global_trend_est_q500,ymin = global_trend_est_q025, ymax = global_trend_est_q975))+
+      
+      geom_hline(yintercept = 0, linewidth=3, col = "gray80", alpha = 0.5)+
+      geom_errorbar(width = 0, col = "gray30")+
+      geom_point(col = "gray30")+
+      geom_point(aes(x = n_additional_years, y = global_trend_true), col = "red", size = 2)+
+      
+      geom_hline(yintercept = log(0.7)/(16*3) , linetype = 1, linewidth = 1, col = "red", alpha = 0.2)+
+      geom_text(x = 0, y = log(0.7)/(16*3), 
+                label = "Trend if global population declines by 30% over 3 generations", 
+                col = "red",hjust=-0.1,vjust=2,
+                fontface = "bold", alpha = 0.2)+
+      
+      geom_hline(yintercept = mean(precision_results$r), linetype = 1, linewidth = 2, col = "red", alpha = 0.5)+
+      geom_text(x = 0, y = mean(precision_results$r), 
+                label = "Trend if global population declines by 50% over 3 generations", 
+                col = "red",hjust=-0.1,vjust=2,
+                fontface = "bold", alpha = 0.5)+
+      
+      theme_bw()+
+      facet_grid(simulation_label~.)+
+      ggtitle("Precision analysis for estimates of global trend with additional years of monitoring")+
+      xlab("Additional years of monitoring (beyond 2018)")+
+      ylab("Estimate of global trend")
+    print(tmp_plot)
+    
   }
 }
 

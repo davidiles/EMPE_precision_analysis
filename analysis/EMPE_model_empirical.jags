@@ -12,7 +12,7 @@
   logX1_sigma <- 1/pow(logX1_tau,0.5)
   
   # Spatial random effect for r_mean[s]
-  r_mean_grandmean_mu ~ dnorm(0,25)
+  r_mean_grandmean_mu ~ dnorm(0,1)
   r_mean_grandmean_tau ~ dgamma(0.001,0.001)
   r_mean_grandmean_sigma <- 1/pow(r_mean_grandmean_tau,0.5)
   
