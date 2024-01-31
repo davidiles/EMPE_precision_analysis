@@ -1,0 +1,10 @@
+*.tmp
+analysis/output/fitted_model.RData
+*.ini
+analysis/.Rhistory
+analysis/script4_simulation.R
+data/empe_aerial.csv
+data/empe_satellite.csv
+*.docx
+from_collaborators/*
+analysis/output/model_checks/traceplot_indices.pdf

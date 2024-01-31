@@ -1,0 +1,57 @@
+
+    model {
+  
+  # Simulate occupancy status in each year, at each colony
+  for (s in 1:n_sites){
+    for (t in 1:n_years){
+    
+      # True occupancy state at colony in each year
+      z_occ[s,t] ~ dbern(prob_occ)
+      N[s,t] <- exp(log_X[s,t]) * z_occ[s,t]
+    }
+  }
+  
+
+  # ------------------------------------
+  # Aerial observation model
+  # ------------------------------------
+  
+  aerial_tau <- pow(aerial_sigma,-2)
+  
+  for (i in 1:n_obs_aerial){
+    
+    # Adult counts assumed to be poisson distributed with mean centred on seasonal expected value
+    lambda[i] ~ dlnorm(log_X[aerial_site[i],aerial_year[i]] + aerial_DoS[i]*DoS_slope - 0.5*pow(aerial_sigma,2), aerial_tau)
+    adult_expected[i] <- z_occ[aerial_site[i],aerial_year[i]] * lambda[i]
+    adult_count[i] ~ dpois(adult_expected[i])
+    
+  }
+  
+  # ------------------------------------
+  # Satellite observation model
+  # ------------------------------------
+  
+  for (i in 1:n_obs_satellite){
+    
+    # Observation error (and bias) for satellite counts is estimated from data
+    sat_expected[i] <- N[satellite_site[i],satellite_year[i]] * sat_slope[img_qual[i]] * exp(DoS_slope * satellite_DoS[i])
+    sat_sigma[i] <- sat_expected[i] * sat_CV[img_qual[i]] + 0.00001 # Tiny constant ensures tau is define when var is zero
+    sat_tau[i] <- pow(sat_sigma[i],-2)
+    satellite[i] ~ dnorm(sat_expected[i], sat_tau[i])
+
+  }
+  
+  # ------------------------------------
+  # Derived quantities
+  # ------------------------------------
+  
+  # Global abundance each year
+  for (t in 1:n_years){
+    N_global[t] <- sum(N[1:n_sites,t])
+  }
+  
+  # Global trend (measured as least squares regression slope on log scale)
+  global_trend <- inprod(log(N_global[1:n_years]),regression_weights[1,1:n_years])
+  
+}
+    

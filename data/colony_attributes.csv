@@ -1,0 +1,51 @@
+site_id,site_name,lat,lon,img_lat_mean,img_lon_mean,ccamlr_reg,ice_reg,p_ice_reg,MPA_current_name,MPA_proposed_name,in_MPA_current,in_MPA_any
+AMAN,Amanda Bay,-69.27,76.83,-69.27,59.75666667,Division 58.4.2,East Indian Ocean,Indian,,,no,no
+AMUN,Amundsen Bay,-66.78,50.55,-66.78,0,Division 58.4.2,West Indian Ocean,Indian,,,no,no
+ASTD,Astrid,-69.95,8.31,-69.95,4.986,Subarea 48.6,Dronning Maud Land,Weddell,,P-WEDDELL,no,no
+ATKA,Atka,-70.61,-8.13,-70.61,-7.8048,Subarea 48.6,Dronning Maud Land,Weddell,,P-WEDDELL,no,no
+AUST,Auster,-67.39,63.98,-67.39,54.84,Division 58.4.2,West Indian Ocean,Indian,,P-EARSMPA,no,no
+BBAY,Barrier Bay,-67.22,81.92,-67.22,0,Division 58.4.1,East Indian Ocean,Indian,,,no,no
+BEAN,Beaufort Island,-76.94,167.02,-76.94,146.1425,Subarea 88.1,Victoria Oates Land,Ross,Ross,,yes,yes
+BEAR,Bear Peninsula,-74.35,-110.25,-74.3555,-82.6875,Subarea 88.2,Amundsen Sea,Bell-Amundsen,,,no,no
+BOWM,Bowman Island,-65.16,103.07,-65.16,73.62142857,Division 58.4.1,Australia,Pacific,,,no,no
+BRYA,Bryan Coast,-73.246649,-85.353244,-73.246649,-79.25658371,Subarea 88.3,Bellingshausen Sea,Bell-Amundsen,,,no,no
+BSON,Brownson Islands,-74.35,-103.64,-74.35,-74.02857143,Subarea 88.3,Amundsen Sea,Bell-Amundsen,,,no,no
+CBEK,Cape Colbeck,-77.135,-157.715,-77.135,-131.4166667,Subarea 88.2,Amundsen Sea,Ross,Ross,,yes,yes
+COUL,Coulman Island,-73.35,169.61,-73.35,152.649,Subarea 88.1,Victoria Oates Land,Ross,Ross,,yes,yes
+CROZ,Cape Crozier,-77.46,169.32,-77.46,112.88,Subarea 88.1,Victoria Oates Land,Ross,Ross,,yes,yes
+DARN,Cape Darnley,-67.88,69.7,-67.88,49.78571429,Division 58.4.2,West Indian Ocean,Indian,,P-EARSMPA,no,yes
+DAWS,Dawson,-76.02,-26.67,-76.02,-24.24545455,Subarea 48.5,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+DBAY,Davis Bay,-69.35,158.49,-69.35,0,Subarea 88.1,Victoria Oates Land,Pacific,Ross,,yes,yes
+DIBB,Dibble Glacier,-66.01,134.79,-66.01,117.94125,Division 58.4.1,Australia,Pacific,,,no,no
+DOLL,Dolleman,-70.61,-60.43,-70.65,-47.00111111,Subarea 48.5,Bellingshausen Sea,Weddell,,P-WEDDELL,no,yes
+DRES,Drescher,-72.83,-19.34,-72.83,-15.472,Subarea 48.6,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+FOLD,Fold Island,-67.32,59.32,-67.32,44.49,Division 58.4.2,West Indian Ocean,Indian,,,no,no
+FRAN,Franklin Island,-76.18,168.43,-76.18,147.37625,Subarea 88.1,Victoria Oates Land,Ross,Ross,,yes,yes
+GOUL,Gould,-77.71,-47.68,-77.71,-38.144,Subarea 48.5,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+GUNN,Gunnerus,-68.75,34.38,-68.75,29.46857143,Division 58.4.2,West Indian Ocean,Indian,,,no,no
+HALY,Halley,-75.54,-27.43,-75.54,-24.38222222,Subarea 48.5,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+HASW,Haswell Island,-66.52,93.01,-66.52,0,Division 58.4.1,East Indian Ocean,Pacific,,P-EARSMPA,no,yes
+JASN,Jason,-66.100236,-60.668903,-66.100236,-53.92791378,Subarea 48.5,Bellingshausen Sea,Weddell,,P-WEDDELL,no,yes
+KLOA,Kloa Point,-66.64,57.28,-66.64,45.824,Division 58.4.2,West Indian Ocean,Indian,,,no,no
+LAZA,Lazarev,-69.75,15.55,-69.75,11.6625,Subarea 48.6,Dronning Maud Land,Weddell,,P-WEDDELL,no,yes
+LEDD,Ledda Bay,-74.228,-130.784,-74.228,-16.36625,Subarea 88.2,Amundsen Sea,Bell-Amundsen,,,no,no
+LUIT,Luitpold,-77.269,-33.54,-77.269,-27.44832355,Subarea 48.5,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+MERT,Mertz Glacier,-67.23,145.516,-67.239125,18.1894935,Division 58.4.1,Victoria Oates Land,Pacific,,P-EARSMPA,no,yes
+NOVI,Noville Peninsula,-71.77,-98.45,-71.77,-86.14375,Subarea 88.3,Bellingshausen Sea,Bell-Amundsen,,,no,no
+PGEO,Point Geologie,-66.67,140.01,-66.67,108.8966667,Division 58.4.1,Australia,Pacific,,P-EARSMPA,no,yes
+PSON,Peterson Bank,-65.92,110.23,-65.92,94.48285714,Division 58.4.1,Australia,Pacific,,,no,no
+RAGN,Ragnhild,-69.9,27.15,-69.9,24.13333333,Subarea 48.6,West Indian Ocean,Indian,,,no,no
+RIIS,Riiser,-72.12,-15.11,-72.12,-12.088,Subarea 48.6,Dronning Maud Land,Weddell,,P-WEDDELL,no,yes
+ROGE,Cape Roget,-71.99,170.59,-71.99,136.472,Subarea 88.1,Victoria Oates Land,Ross,Ross,,yes,yes
+ROTS,Rothschild,-69.518,-72.265,-69.518,-66.24291667,Subarea 88.3,Bellingshausen Sea,Bell-Amundsen,,P-D1MPA,no,yes
+RUPE,Rupert Coast,-75.38,-143.3,-75.38,0,Subarea 88.2,Amundsen Sea,Ross,,,no,no
+SANA,Sanae,-70.03,-1.34,-70.04355556,-0.946666667,Subarea 48.6,Dronning Maud Land,Weddell,,P-WEDDELL,no,yes
+SHAC,Shackleton Ice Shelf,-64.86,96.02,-64.86,0,Division 58.4.1,East Indian Ocean,Pacific,,,no,no
+SMTH,Smith,-74.37,-60.83,-74.37,-48.664,Subarea 48.5,Bellingshausen Sea,Weddell,,P-WEDDELL,no,yes
+SMYL,Smyley,-72.3,-78.83,-72.3,-68.97625,Subarea 88.3,Bellingshausen Sea,Bell-Amundsen,,P-D1MPA,no,yes
+SNOW,Snowhill,-64.52,-57.44,-64.52,-44.67555556,Subarea 48.1,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+STCB,Stancomb,-74.12,-23.09,-74.12,-21.44071429,Subarea 48.5,Weddell Sea,Weddell,,P-WEDDELL,no,yes
+TAYG,Taylor Glacier,-67.45,60.88,-67.45,43.48571429,Division 58.4.2,West Indian Ocean,Indian,,P-EARSMPA,no,yes
+THUR,Thurston Glacier,-73.5,-125.621,-73.5,-109.918375,Subarea 88.2,Amundsen Sea,Bell-Amundsen,,,no,no
+UMBE,Umbeashi,-68.05,43.01,-68.05,0,Division 58.4.2,West Indian Ocean,Indian,,,no,no
+WASH,Cape Washington,-74.64,165.37,-74.64,0,Subarea 88.1,Victoria Oates Land,Ross,Ross,,yes,yes

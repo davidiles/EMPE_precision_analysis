@@ -1,0 +1,9 @@
+Region,FastIceExtent_min,FastIceExtent_max,SeaIceExtent_min,SeaIceExtent_max,FastIceTrend,FastIceTrend_CI
+Dronning Maud Land,4.7,21,99,3122,1.8,0.47
+West Indian Ocean,33,111,134,2252,0.4,0.3
+East Indian Ocean,24,72,122,1362,-1.38,0.43
+Australia,53,139,173,1112,1.1,0.35
+Victoria Oates Land,31,85,312,1118,-1.78,0.41
+Amundsen Sea,36,66,581,2766,-2,-2
+Bellingshausen Sea,23,64,237,1244,2.81,2.81
+Weddell Sea,20,41,1164,2768,-2.59,2.59
