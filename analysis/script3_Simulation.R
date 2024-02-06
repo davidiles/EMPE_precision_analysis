@@ -5,8 +5,7 @@ my.packs <- c('jagsUI',"ggplot2",'reshape2',
 if (any(!my.packs %in% installed.packages()[, 'Package']))install.packages(my.packs[which(!my.packs %in% installed.packages()[, 'Package'])],dependencies = TRUE)
 lapply(my.packs, require, character.only = TRUE)
 
-setwd("C:/Users/IlesD/OneDrive - EC-EC/Iles/Projects/X_other_projects/EMPE_Global/analysis")
-
+setwd("C:/Users/IlesD/OneDrive - EC-EC/Iles/Projects/X_other_projects/EMPE_precision_analysis/analysis")
 rm(list=ls())
 
 # --------------------------------------
@@ -144,36 +143,44 @@ for (sim_run in seq(1,1000,1)){
   # 'true' parameter values for this simulation
   # --------------------------------------
   
-  # Non-joint samples, to represent a wider range of population dynamic scenarios
-  jags.data.sim$prob_occ <- out$sims.list$prob_occ[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$r_mean_grandmean_mu <- out$sims.list$r_mean_grandmean_mu[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$r_mean_grandmean_sigma <- out$sims.list$r_mean_grandmean_sigma[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$logX1_mean <- out$sims.list$logX1_mean[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$logX1_sigma <- out$sims.list$logX1_sigma[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$r_sigma <- out$sims.list$r_sigma[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$aerial_sigma <- out$sims.list$aerial_sigma[sample(1:out$mcmc.info$n.samples,1)]
-  jags.data.sim$sat_slope <- out$sims.list$sat_slope[sample(1:out$mcmc.info$n.samples,1),1:3]
-  jags.data.sim$sat_CV <- out$sims.list$sat_CV[sample(1:out$mcmc.info$n.samples,1),1:3]
-  jags.data.sim$DoS_slope <- out$sims.list$DoS_slope[sample(1:out$mcmc.info$n.samples,1)]
+  # Mean parameters
+  prob_occ <- out$mean$prob_occ
+  r_mean_grandmean_mu <- out$mean$r_mean_grandmean_mu
+  r_mean_grandmean_sigma <- out$mean$r_mean_grandmean_sigma
+  logX1_mean <- out$mean$logX1_mean
+  logX1_sigma <- out$mean$logX1_sigma
+  r_sigma <- out$mean$r_sigma
+  aerial_sigma <- out$mean$aerial_sigma
+  sat_slope <- out$mean$sat_slope
+  sat_CV <- out$mean$sat_CV
+  DoS_slope <- out$mean$DoS_slope
   
-  out_sim <- jags(data=jags.data.sim,
-                  model.file="EMPE_model_simulate_data.jags",
-                  parameters.to.save=c(
-                    
-                    "N",
-                    "adult_count",
-                    "satellite",
-                    "N_global",
-                    "global_trend"
-                    
-                  ),
-                  inits = NULL,
-                  n.chains=1,
-                  n.thin = 1,
-                  n.iter= 2,
-                  n.burnin= 1,
-                  parallel = TRUE)
-  
+  # target_trend <- log(0.5)/(16*3)  # 50% reduction in 3 generations
+  # sim_trend <- NA
+  # while(is.na(sim_trend)){
+  #   
+  #   out_sim <- jags(data=jags.data.sim,
+  #                   model.file="EMPE_model_simulate_data.jags",
+  #                   parameters.to.save=c(
+  #                     
+  #                     "N",
+  #                     "adult_count",
+  #                     "satellite",
+  #                     "N_global",
+  #                     "global_trend"
+  #                     
+  #                   ),
+  #                   inits = NULL,
+  #                   n.chains=1,
+  #                   n.thin = 1,
+  #                   n.iter= 2,
+  #                   n.burnin= 1,
+  #                   parallel = TRUE)
+  #   
+  #   sim_trend <- out_sim$sims.list$global_trend
+  #   if (sim_trend < (target_trend-0.001) | sim_trend > (target_trend+0.001)) sim_trend <- NA
+  # }
+  # 
   # ------------------------------------
   # Extract simulated data and plot
   # ------------------------------------

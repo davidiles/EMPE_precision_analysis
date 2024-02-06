@@ -1,23 +1,11 @@
 
     model {
-  
-  # Simulate occupancy status in each year, at each colony
-  for (s in 1:n_sites){
-    for (t in 1:n_years){
-    
-      # True occupancy state at colony in each year
-      z_occ[s,t] ~ dbern(prob_occ)
-      N[s,t] <- exp(log_X[s,t]) * z_occ[s,t]
-    }
-  }
-  
 
   # ------------------------------------
-  # Aerial observation model
+  # Simulate aerial observations
   # ------------------------------------
   
   aerial_tau <- pow(aerial_sigma,-2)
-  
   for (i in 1:n_obs_aerial){
     
     # Adult counts assumed to be poisson distributed with mean centred on seasonal expected value
@@ -28,7 +16,7 @@
   }
   
   # ------------------------------------
-  # Satellite observation model
+  # Simulate satellite observations
   # ------------------------------------
   
   for (i in 1:n_obs_satellite){
@@ -40,18 +28,6 @@
     satellite[i] ~ dnorm(sat_expected[i], sat_tau[i])
 
   }
-  
-  # ------------------------------------
-  # Derived quantities
-  # ------------------------------------
-  
-  # Global abundance each year
-  for (t in 1:n_years){
-    N_global[t] <- sum(N[1:n_sites,t])
-  }
-  
-  # Global trend (measured as least squares regression slope on log scale)
-  global_trend <- inprod(log(N_global[1:n_years]),regression_weights[1,1:n_years])
   
 }
     
